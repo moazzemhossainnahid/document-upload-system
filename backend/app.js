@@ -16,16 +16,14 @@ app.use(express.json());
 app.use('/public', express.static('public'))
 
 // import routes
-const imagesRoute = require('./v1/Routes/images.route');
-const videosRoute = require('./v1/Routes/videos.route');
+const mediaRoute = require('./v1/Routes/media.route');
 const dbConnect = require("./Utilities/dbConnect");
 
 
 
 
 // declare routes
-app.use('/api/v1/images', imagesRoute);
-app.use('/api/v1/videos', videosRoute);
+app.use('/api/v1/media', mediaRoute);
 
 
 
@@ -51,9 +49,8 @@ app.listen(PORT, () => {
 
 
 
-// Serve static files including uploaded videos & images
-app.use('/images', express.static(path.join(__dirname, 'media', 'images')));
-app.use('/videos', express.static(path.join(__dirname, 'media', 'videos')));
+// Serve static files including uploaded media
+app.use('/media', express.static(path.join(__dirname, 'media', 'uploads')));
 
 
 app.all("*", (req, res) => {
